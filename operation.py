@@ -28,8 +28,4 @@ class Operations:
     # setter method
     def set_amount(self, x):
         self.amount = x
-
-
-    def myfunc(abc):
-        print("Hello my name is " + abc.name)
  
