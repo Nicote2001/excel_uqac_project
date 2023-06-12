@@ -1,6 +1,7 @@
 #class def
 class Operations:
-    def __init__(self, name, type,amount,eglise):
+    def __init__(self,account, name, type,amount,eglise):
+        self.account = account
         self.name = name
         self.type = type
         self.amount = amount
