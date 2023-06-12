@@ -8,6 +8,9 @@ border_default=Border(left=Side(style='thin'),
                      top=Side(style='thin'), 
                      bottom=Side(style='thin'))
 
+def val(sheet,x, y):
+    return sheet.cell(row=x, column=y).value
+
 # fonction de lecture de fichier pour transformer en liste
 def ExcelfileToList(name_file):
     file = name_file + ".xlsx"
@@ -84,10 +87,12 @@ def WriteRevenus(list, sheet):
         temp_st_do = sheet.cell(row=6+(x+1), column=9)
         temp_st_do.value = list[x].st_dominique_amount
         temp_st_do.border = border_default
+        temp_st_do.number_format = '#,##0.00$' 
 
         temp_st_fam = sheet.cell(row=6+(x+1), column=10)
         temp_st_fam.value = list[x].sainte_famille_amount
         temp_st_fam.border = border_default
+        temp_st_fam.number_format = '#,##0.00$' 
 
     #total rev paroissiens
     total_par = sheet.cell(row=18, column=6)
@@ -97,8 +102,8 @@ def WriteRevenus(list, sheet):
     total_par_st_do = sheet.cell(row=18, column=9)
     total_par_st_do.value = '= SOMME(I7:I17)'
 
-    total_par_st_do = sheet.cell(row=18, column=10)
-    total_par_st_do.value = '= SOMME(J7:J17)'
+    total_par_st_fa = sheet.cell(row=18, column=10)
+    total_par_st_fa.value = '= SOMME(J7:J17)'
 
     #AUTRES
     total_par = sheet.cell(row=20, column=6)
@@ -110,15 +115,44 @@ def WriteRevenus(list, sheet):
         tempAccount.value = list[x].account
         tempAccount.font = Font(bold=True)
         tempAccount.alignment = Alignment(horizontal="center")
+        tempAccount.border = border_default
 
         temp_name = sheet.cell(row=9+(x+1), column=7)
         temp_name.value = list[x].name
+        temp_name.border = border_default
 
         temp_st_do = sheet.cell(row=9+(x+1), column=9)
         temp_st_do.value = list[x].st_dominique_amount
+        temp_st_do.border = border_default
+        temp_st_do.number_format = '#,##0.00$' 
 
         temp_st_fam = sheet.cell(row=9+(x+1), column=10)
         temp_st_fam.value = list[x].sainte_famille_amount
+        temp_st_fam.border = border_default
+        temp_st_fam.number_format = '#,##0.00$' 
+
+    #total rev autres
+    total_autre = sheet.cell(row=26, column=6)
+    total_autre.value = "TOTAL REVENUS DES AUTRES"
+    total_autre.font = Font(bold=True,size=12)
+
+    total_autre_st_do = sheet.cell(row=26, column=9)
+    total_autre_st_do.value = '= SOMME(I21:I25)'
+
+    total_autre_st_fa = sheet.cell(row=26, column=10)
+    total_autre_st_fa.value = '= SOMME(J21:J25)'
+
+    #total final revenus
+    total_autre = sheet.cell(row=28, column=6)
+    total_autre.value = "GRAND  TOTAL REVENUS "
+    total_autre.font = Font(bold=True,size=16)
+
+    total_autre_st_do = sheet.cell(row=28, column=9)
+    total_autre_st_do.value = '= SOMME(I21:I25)'
+
+    total_autre_st_fa = sheet.cell(row=28, column=10)
+    total_autre_st_fa.value = '= SOMME(J21:J25)'
+
 
 def WriteDepense(list, sheet):
 
