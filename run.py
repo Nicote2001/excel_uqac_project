@@ -3,6 +3,11 @@ from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Fo
 from operation import Operations
 from bilan_operation import bilan_operations
 
+border_default=Border(left=Side(style='thin'), 
+                     right=Side(style='thin'), 
+                     top=Side(style='thin'), 
+                     bottom=Side(style='thin'))
+
 # fonction de lecture de fichier pour transformer en liste
 def ExcelfileToList(name_file):
     file = name_file + ".xlsx"
@@ -52,24 +57,90 @@ def ReadAllExcel():
         print(x.name+" - montant : "+str(x.amount))
     return final_lst
 
-def SplitListByType(type, list):
-    list_return = []
-    for x in list:
-        if(x.type == type):
-            list_return.append(x)
-    return list_return
-
 #on passe la list a trier dans le excel, la feuille Excel et l'index de commencement 
-def WriteOperation(list, sheet, indexToStart):
-    for x, item in enumerate(list):
-        data_cell = sheet.cell(row=x+indexToStart, column=6)
-        data_cell.value = list[x].name
-        if(item.eglise == "SAINT-DOMINIQUE"):
-            data_cell = sheet.cell(row=x+indexToStart, column=9)
-            data_cell.value = list[x].amount
-        elif(item.eglise == "SAINTE-FAMILLE"):
-            data_cell = sheet.cell(row=x+indexToStart, column=10)
-            data_cell.value = list[x].amount
+def WriteRevenus(list, sheet):
+
+    #revenus
+    f5 = sheet.cell(row=5, column=6)
+    f5.value = "REVENUS"
+    f5.font = Font(bold=True,size=14)
+
+     #paroissiens
+    f5 = sheet.cell(row=6, column=6)
+    f5.value = "  PAROISSIENS"
+    f5.font = Font(bold=True,size=12)
+
+    for x in range(0,11):
+        tempAccount = sheet.cell(row=6+(x+1), column=6)
+        tempAccount.value = list[x].account
+        tempAccount.font = Font(bold=True)
+        tempAccount.alignment = Alignment(horizontal="center")
+        tempAccount.border = border_default
+
+        temp_name = sheet.cell(row=6+(x+1), column=7)
+        temp_name.value = list[x].name
+        temp_name.border = border_default
+
+        temp_st_do = sheet.cell(row=6+(x+1), column=9)
+        temp_st_do.value = list[x].st_dominique_amount
+        temp_st_do.border = border_default
+
+        temp_st_fam = sheet.cell(row=6+(x+1), column=10)
+        temp_st_fam.value = list[x].sainte_famille_amount
+        temp_st_fam.border = border_default
+
+    #total rev paroissiens
+    total_par = sheet.cell(row=18, column=6)
+    total_par.value = "TOTAL REVENUS DES PAROISSIENS"
+    total_par.font = Font(bold=True,size=12)
+
+    total_par_st_do = sheet.cell(row=18, column=9)
+    total_par_st_do.value = '= SOMME(I7:I17)'
+
+    total_par_st_do = sheet.cell(row=18, column=10)
+    total_par_st_do.value = '= SOMME(J7:J17)'
+
+    #AUTRES
+    total_par = sheet.cell(row=20, column=6)
+    total_par.value = "AUTRES"
+    total_par.font = Font(bold=True,size=12)
+
+    for x in range(11,16):
+        tempAccount = sheet.cell(row=9+(x+1), column=6)
+        tempAccount.value = list[x].account
+        tempAccount.font = Font(bold=True)
+        tempAccount.alignment = Alignment(horizontal="center")
+
+        temp_name = sheet.cell(row=9+(x+1), column=7)
+        temp_name.value = list[x].name
+
+        temp_st_do = sheet.cell(row=9+(x+1), column=9)
+        temp_st_do.value = list[x].st_dominique_amount
+
+        temp_st_fam = sheet.cell(row=9+(x+1), column=10)
+        temp_st_fam.value = list[x].sainte_famille_amount
+
+def WriteDepense(list, sheet):
+
+     #revenus
+    dep = sheet.cell(row=24, column=6)
+    dep.value = "DÉPENSES"
+    dep.font = Font(bold=True,size=14)
+
+    for x in range(16,len(list)):
+        tempAccount = sheet.cell(row=5+(x+4), column=6)
+        tempAccount.value = list[x].account
+        tempAccount.font = Font(bold=True)
+        tempAccount.alignment = Alignment(horizontal="center")
+
+        temp_name = sheet.cell(row=5+(x+4), column=7)
+        temp_name.value = list[x].name
+
+        temp_st_do = sheet.cell(row=5+(x+4), column=9)
+        temp_st_do.value = list[x].st_dominique_amount
+
+        temp_st_fa = sheet.cell(row=5+(x+4), column=10)
+        temp_st_fa.value = list[x].sainte_famille_amount
 
 def WriteExcel(list_operation):
     
@@ -77,16 +148,14 @@ def WriteExcel(list_operation):
     wb = openpyxl.Workbook()
     sheet = wb.active  
 
+    bilan_lst = regroupement(list_operation)
+
     #set default col dimensions
-    sheet.column_dimensions['F'].width = 40
+    sheet.column_dimensions['G'].width = 40
     sheet.column_dimensions['I'].width = 20
     sheet.column_dimensions['J'].width = 20
     sheet.column_dimensions['K'].width = 20
     sheet.column_dimensions['L'].width = 20
-
-    #split list by types
-    revenue_list = SplitListByType(0,list_operation)
-    depense_list = SplitListByType(1,list_operation)
 
 
     #titre en gras et en gros
@@ -114,21 +183,9 @@ def WriteExcel(list_operation):
     j4.value = "SAINTE-FAMILLE"
     j4.font = Font(bold=True)
 
-    #revenus
-    f5 = sheet.cell(row=5, column=6)
-    f5.value = "REVENUS"
-    f5.font = Font(bold=True,size=14)
 
     #écriture des revenues
-    WriteOperation(revenue_list, sheet, 6)
-
-    #revenus
-    dep = sheet.cell(row=len(revenue_list)+7, column=6)
-    dep.value = "DÉPENSES"
-    dep.font = Font(bold=True,size=14)
-
-    #écriture depenses
-    WriteOperation(depense_list, sheet, len(revenue_list)+8)
+    WriteRevenus(bilan_lst, sheet)
     
     wb.save("demo.xlsx")
 
@@ -190,7 +247,7 @@ def regroupement(list_operations):
                 elif(operation.eglise == "SAINTE-FAMILLE"):
                     bilan.sainte_famille_amount = bilan.sainte_famille_amount+operation.amount
 
-    return 0
+    return grouped_list
 
 
 
@@ -198,4 +255,4 @@ def regroupement(list_operations):
                 
 #debut programme
 final_list = ReadAllExcel()
-regroupement(final_list)
+WriteExcel(final_list)
