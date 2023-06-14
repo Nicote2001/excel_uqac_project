@@ -54,13 +54,13 @@ def write_paroissiens(list,sheet,total_bilan):
     total_par_st_do = sheet.cell(row=18, column=9)
     total_par_st_do.value = total_bilan.paroissien_total.st_dominique
     total_par_st_do.number_format = '#,##0.00$' 
-    total_par_st_do = Font(bold=True)
+    total_par_st_do.font = Font(bold=True)
     total_par_st_do.border = border_default
 
     total_par_st_fa = sheet.cell(row=18, column=10)
     total_par_st_fa.value = total_bilan.paroissien_total.st_famille
     total_par_st_fa.number_format = '#,##0.00$' 
-    total_par_st_fa = Font(bold=True)
+    total_par_st_fa.font = Font(bold=True)
     total_par_st_fa.border = border_default
 
 def write_autre(list,sheet, total_bilan):
@@ -96,9 +96,15 @@ def write_autre(list,sheet, total_bilan):
 
     total_autre_st_do = sheet.cell(row=26, column=9)
     total_autre_st_do.value = total_bilan.autre_total.st_dominique
+    total_autre_st_do.number_format = '#,##0.00$' 
+    total_autre_st_do.font = Font(bold=True)
+    total_autre_st_do.border = border_default
 
     total_autre_st_fa = sheet.cell(row=26, column=10)
     total_autre_st_fa.value = total_bilan.autre_total.st_famille
+    total_autre_st_fa.number_format = '#,##0.00$' 
+    total_autre_st_fa.font = Font(bold=True)
+    total_autre_st_fa.border = border_default
 
 def write_pastorale(list,sheet,total_bilan):
     #paroissiens
@@ -134,9 +140,15 @@ def write_pastorale(list,sheet,total_bilan):
 
     total_par_st_do = sheet.cell(row=46, column=9)
     total_par_st_do.value = total_bilan.pastorale_total.st_dominique
+    total_par_st_do.number_format = '#,##0.00$' 
+    total_par_st_do.font = Font(bold=True)
+    total_par_st_do.border = border_default
 
     total_par_st_fa = sheet.cell(row=46, column=10)
     total_par_st_fa.value = total_bilan.pastorale_total.st_famille
+    total_par_st_fa.number_format = '#,##0.00$' 
+    total_par_st_fa.font = Font(bold=True)
+    total_par_st_fa.border = border_default
 
 def write_bureau(list,sheet, total_bilan):
     #AUTRES
@@ -144,7 +156,7 @@ def write_bureau(list,sheet, total_bilan):
     total_par.value = " DE BUREAU"
     total_par.font = Font(bold=True,size=12)
 
-    for x in range(31,38):
+    for x in range(30,37):
         tempAccount = sheet.cell(row=17+(x+1), column=6)
         tempAccount.value = list[x].account
         tempAccount.font = Font(bold=True)
@@ -166,15 +178,21 @@ def write_bureau(list,sheet, total_bilan):
         temp_st_fam.number_format = '#,##0.00$' 
 
     #total rev autres
-    total_autre = sheet.cell(row=56, column=6)
+    total_autre = sheet.cell(row=55, column=6)
     total_autre.value = "TOTAL DÉPENSE DE BUREAU"
     total_autre.font = Font(bold=True,size=12)
 
-    total_autre_st_do = sheet.cell(row=56, column=9)
+    total_autre_st_do = sheet.cell(row=55, column=9)
     total_autre_st_do.value = total_bilan.bureau_total.st_dominique
+    total_autre_st_do.number_format = '#,##0.00$' 
+    total_autre_st_do.font = Font(bold=True)
+    total_autre_st_do.border = border_default
 
-    total_autre_st_fa = sheet.cell(row=56, column=10)
+    total_autre_st_fa = sheet.cell(row=55, column=10)
     total_autre_st_fa.value = total_bilan.bureau_total.st_famille
+    total_autre_st_fa.number_format = '#,##0.00$' 
+    total_autre_st_fa.font = Font(bold=True)
+    total_autre_st_fa.border = border_default
 
 def WriteRevenus(list, sheet, total_final):
 
@@ -206,7 +224,7 @@ def write_batisse(list, sheet, total_bilan):
     total_par.value = " DE BÂTISSE"
     total_par.font = Font(bold=True,size=12)
 
-    for x in range(38,45):
+    for x in range(37,45):
         tempAccount = sheet.cell(row=20+(x+1), column=6)
         tempAccount.value = list[x].account
         tempAccount.font = Font(bold=True)
@@ -232,11 +250,18 @@ def write_batisse(list, sheet, total_bilan):
     total_autre.value = "TOTAL DÉPENSE DE BÂTISSE"
     total_autre.font = Font(bold=True,size=12)
 
-    total_autre_st_do = sheet.cell(row=66, column=9)
-    total_autre_st_do.value = total_bilan.batisse_total.st_dominique
+    total_batisse_st_do = sheet.cell(row=66, column=9)
+    total_batisse_st_do.value = total_bilan.batisse_total.st_dominique
+    total_batisse_st_do.number_format = '#,##0.00$' 
+    total_batisse_st_do.font = Font(bold=True)
+    total_batisse_st_do.border = border_default
+    
 
-    total_autre_st_fa = sheet.cell(row=66, column=10)
-    total_autre_st_fa.value = total_bilan.batisse_total.st_famille
+    total_batisse_st_fa = sheet.cell(row=66, column=10)
+    total_batisse_st_fa.value = total_bilan.batisse_total.st_famille
+    total_batisse_st_fa.number_format = '#,##0.00$' 
+    total_batisse_st_fa.font = Font(bold=True)
+    total_batisse_st_fa.border = border_default
 
 def write_header(sheet):
     
@@ -285,7 +310,7 @@ def WriteDepense(list, sheet, list_bilan):
 
     #total final revenus
     total_autre = sheet.cell(row=68, column=6)
-    total_autre.value = "GRAND  TOTAL REVENUS "
+    total_autre.value = "GRAND  TOTAL DÉPENSES "
     total_autre.font = Font(bold=True,size=16)
 
     total_autre_st_do = sheet.cell(row=68, column=9)
@@ -293,6 +318,68 @@ def WriteDepense(list, sheet, list_bilan):
 
     total_autre_st_fa = sheet.cell(row=68, column=10)
     total_autre_st_fa.value = list_bilan.depenses_total.st_famille
+
+def write_footer(sheet,list_bilan):
+    k73 = sheet.cell(row=73, column=6)
+    k73.value = "GRAND  TOTAL REVENUS "
+    k73.font = Font(bold=True,size=16)
+
+    l73 = sheet.cell(row=73, column=9)
+    l73.value = list_bilan.revenus_total.st_dominique
+
+    i73 = sheet.cell(row=73, column=10)
+    i73.value = list_bilan.revenus_total.st_famille
+
+    #depense
+    j73 = sheet.cell(row=75, column=6)
+    j73.value = "GRAND  TOTAL DÉPENSES "
+    j73.font = Font(bold=True,size=16)
+
+    m73 = sheet.cell(row=75, column=9)
+    m73.value = list_bilan.depenses_total.st_dominique
+
+    n73 = sheet.cell(row=75, column=10)
+    n73.value = list_bilan.depenses_total.st_famille
+
+    #surplus annee
+    o73 = sheet.cell(row=77, column=6)
+    o73.value = "SURPLUS (DÉFICIT) DE L'ANNÉE PROJETÉ"
+    o73.font = Font(bold=True,size=16)
+
+    p73 = sheet.cell(row=77, column=9)
+    p73.value = list_bilan.surplus_annee.st_dominique
+
+    q73 = sheet.cell(row=77, column=10)
+    q73.value = list_bilan.surplus_annee.st_famille
+
+    #surplus annee
+    r73 = sheet.cell(row=79, column=6)
+    r73.value = "SURPLUS (DÉFICIT) ACCUMULÉ AU 31/12/202#"
+    r73.font = Font(bold=True,size=16)
+
+    s73 = sheet.cell(row=79, column=9)
+    s73.value = list_bilan.surplus_accumule.st_dominique
+
+    t73 = sheet.cell(row=79, column=10)
+    t73.value = list_bilan.surplus_accumule.st_famille
+
+    #eglises de parroisses
+    u73 = sheet.cell(row=79, column=6)
+    u73.value = "Églises de la paroisse"
+    u73.font = Font(bold=True,size=16)
+
+    v73 = sheet.cell(row=79, column=9)
+    v73.value = "SAINT-DOMINIQUE"
+
+    w73 = sheet.cell(row=79, column=10)
+    w73.value = "SAINTE-FAMILLE"
+
+    x73 = sheet.cell(row=80, column=10)
+    x73.value = "SAINT-CYRIAC"
+
+    x73 = sheet.cell(row=81, column=10)
+    x73.value = "SAINT-RAPHAEL"
+
 
 def WriteExcel(bilan_lst):
     
@@ -319,6 +406,9 @@ def WriteExcel(bilan_lst):
     WriteRevenus(bilan_lst, sheet, total_final)
     
     WriteDepense(bilan_lst,sheet, total_final)
+
+    #write the footer
+    write_footer(sheet,total_final)
     wb.save("demo.xlsx")
 
 #regroupement

@@ -11,6 +11,8 @@ class bilan_totals:
         self.bureau_total = total(0,0)
         self.batisse_total = total(0,0)
         self.depenses_total = total(0,0)
+        self.surplus_annee = total(0,0)
+        self.surplus_accumule = total(0,0)
 
     def set_totaux(self):
         for x in range(0,len(self.list_bilan)):
@@ -23,18 +25,25 @@ class bilan_totals:
             elif(x < 30):
                 self.pastorale_total.st_dominique += self.list_bilan[x].st_dominique_amount
                 self.pastorale_total.st_famille += self.list_bilan[x].sainte_famille_amount
-            elif(x < 38):
+            elif(x < 37):
                 self.bureau_total.st_dominique += self.list_bilan[x].st_dominique_amount
                 self.bureau_total.st_famille += self.list_bilan[x].sainte_famille_amount
             elif(x < 45):
-                self.depenses_total.st_dominique += self.list_bilan[x].st_dominique_amount
-                self.depenses_total.st_famille += self.list_bilan[x].sainte_famille_amount
+                self.batisse_total.st_dominique += self.list_bilan[x].st_dominique_amount
+                self.batisse_total.st_famille += self.list_bilan[x].sainte_famille_amount
 
         self.revenus_total.st_dominique = self.paroissien_total.st_dominique + self.autre_total.st_dominique
         self.revenus_total.st_famille = self.paroissien_total.st_famille + self.autre_total.st_famille
 
         self.depenses_total.st_dominique = self.pastorale_total.st_dominique + self.bureau_total.st_dominique + self.batisse_total.st_dominique
         self.depenses_total.st_famille = self.pastorale_total.st_famille + self.bureau_total.st_famille + self.batisse_total.st_famille
+
+        self.surplus_accumule.st_dominique = 0
+        self.surplus_accumule.st_famille = 0
+
+        self.surplus_annee.st_dominique = self.revenus_total.st_dominique -self.depenses_total.st_dominique
+        self.surplus_annee.st_famille = self.revenus_total.st_famille -self.depenses_total.st_famille
+        
             
 
 
