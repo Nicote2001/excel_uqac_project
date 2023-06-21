@@ -45,11 +45,24 @@ def write_paroissiens(list,sheet,total_bilan):
         temp_st_fam.border = border_default
         temp_st_fam.number_format = '#,##0.00$' 
 
+        temp_st_ge = sheet.cell(row=6+(x+1), column=11)
+        temp_st_ge.value = list[x].saint_gerard_amount
+        temp_st_ge.border = border_default
+        temp_st_ge.number_format = '#,##0.00$' 
+
+        temp_st_th = sheet.cell(row=6+(x+1), column=12)
+        temp_st_th.value = list[x].sainte_therese_amount
+        temp_st_th.border = border_default
+        temp_st_th.number_format = '#,##0.00$' 
+
     #total rev paroissiens
     total_par = sheet.cell(row=18, column=6)
     total_par.value = "TOTAL REVENUS DES PAROISSIENS"
     total_par.font = Font(bold=True,size=12)
     total_par.border = border_default
+
+    total_par1 = sheet.cell(row=18, column=7)
+    total_par1.border = border_default
 
     total_par_st_do = sheet.cell(row=18, column=9)
     total_par_st_do.value = total_bilan.paroissien_total.st_dominique
@@ -63,11 +76,23 @@ def write_paroissiens(list,sheet,total_bilan):
     total_par_st_fa.font = Font(bold=True)
     total_par_st_fa.border = border_default
 
+    total_par_st_ge = sheet.cell(row=18, column=11)
+    total_par_st_ge.value = total_bilan.paroissien_total.st_gerard
+    total_par_st_ge.number_format = '#,##0.00$' 
+    total_par_st_ge.font = Font(bold=True)
+    total_par_st_ge.border = border_default
+
+    total_par_st_th = sheet.cell(row=18, column=12)
+    total_par_st_th.value = total_bilan.paroissien_total.st_therese
+    total_par_st_th.number_format = '#,##0.00$' 
+    total_par_st_th.font = Font(bold=True)
+    total_par_st_th.border = border_default
+
 def write_autre(list,sheet, total_bilan):
     total_par = sheet.cell(row=20, column=6)
     total_par.value = "AUTRES"
     total_par.font = Font(bold=True,size=12)
-
+  
     for x in range(11,16):
         tempAccount = sheet.cell(row=9+(x+1), column=6)
         tempAccount.value = list[x].account
@@ -89,10 +114,24 @@ def write_autre(list,sheet, total_bilan):
         temp_st_fam.border = border_default
         temp_st_fam.number_format = '#,##0.00$' 
 
+        temp_st_ge = sheet.cell(row=9+(x+1), column=11)
+        temp_st_ge.value = list[x].saint_gerard_amount
+        temp_st_ge.border = border_default
+        temp_st_ge.number_format = '#,##0.00$' 
+
+        temp_st_th = sheet.cell(row=9+(x+1), column=12)
+        temp_st_th.value = list[x].sainte_therese_amount
+        temp_st_th.border = border_default
+        temp_st_th.number_format = '#,##0.00$' 
+
     #total rev autres
     total_autre = sheet.cell(row=26, column=6)
     total_autre.value = "TOTAL REVENUS DES AUTRES"
     total_autre.font = Font(bold=True,size=12)
+    total_autre.border = border_default
+
+    total_par1 = sheet.cell(row=26, column=7)
+    total_par1.border = border_default
 
     total_autre_st_do = sheet.cell(row=26, column=9)
     total_autre_st_do.value = total_bilan.autre_total.st_dominique
@@ -105,6 +144,18 @@ def write_autre(list,sheet, total_bilan):
     total_autre_st_fa.number_format = '#,##0.00$' 
     total_autre_st_fa.font = Font(bold=True)
     total_autre_st_fa.border = border_default
+
+    total_par_st_ge = sheet.cell(row=26, column=11)
+    total_par_st_ge.value = total_bilan.autre_total.st_gerard
+    total_par_st_ge.number_format = '#,##0.00$' 
+    total_par_st_ge.font = Font(bold=True)
+    total_par_st_ge.border = border_default
+
+    total_par_st_th = sheet.cell(row=26, column=12)
+    total_par_st_th.value = total_bilan.autre_total.st_therese
+    total_par_st_th.number_format = '#,##0.00$' 
+    total_par_st_th.font = Font(bold=True)
+    total_par_st_th.border = border_default
 
 def write_pastorale(list,sheet,total_bilan):
     #paroissiens
@@ -133,10 +184,25 @@ def write_pastorale(list,sheet,total_bilan):
         temp_st_fam.border = border_default
         temp_st_fam.number_format = '#,##0.00$' 
 
+        temp_st_ge = sheet.cell(row=15+(x+1), column=11)
+        temp_st_ge.value = list[x].saint_gerard_amount
+        temp_st_ge.border = border_default
+        temp_st_ge.number_format = '#,##0.00$' 
+
+        temp_st_th = sheet.cell(row=15+(x+1), column=12)
+        temp_st_th.value = list[x].sainte_therese_amount
+        temp_st_th.border = border_default
+        temp_st_th.number_format = '#,##0.00$' 
+
     #total rev paroissiens
     total_par = sheet.cell(row=46, column=6)
     total_par.value = "TOTAL DÉPENSES DE PASTORALE"
     total_par.font = Font(bold=True,size=12)
+    total_par.border = border_default
+
+    total_par1 = sheet.cell(row=46, column=7)
+    total_par1.border = border_default
+    
 
     total_par_st_do = sheet.cell(row=46, column=9)
     total_par_st_do.value = total_bilan.pastorale_total.st_dominique
@@ -150,6 +216,18 @@ def write_pastorale(list,sheet,total_bilan):
     total_par_st_fa.font = Font(bold=True)
     total_par_st_fa.border = border_default
 
+    total_par_st_ge = sheet.cell(row=46, column=11)
+    total_par_st_ge.value = total_bilan.pastorale_total.st_gerard
+    total_par_st_ge.number_format = '#,##0.00$' 
+    total_par_st_ge.font = Font(bold=True)
+    total_par_st_ge.border = border_default
+
+    total_par_st_th = sheet.cell(row=46, column=12)
+    total_par_st_th.value = total_bilan.pastorale_total.st_therese
+    total_par_st_th.number_format = '#,##0.00$' 
+    total_par_st_th.font = Font(bold=True)
+    total_par_st_th.border = border_default
+
 def write_bureau(list,sheet, total_bilan):
     #AUTRES
     total_par = sheet.cell(row=48, column=6)
@@ -157,6 +235,7 @@ def write_bureau(list,sheet, total_bilan):
     total_par.font = Font(bold=True,size=12)
 
     for x in range(30,37):
+        
         tempAccount = sheet.cell(row=17+(x+1), column=6)
         tempAccount.value = list[x].account
         tempAccount.font = Font(bold=True)
@@ -177,10 +256,24 @@ def write_bureau(list,sheet, total_bilan):
         temp_st_fam.border = border_default
         temp_st_fam.number_format = '#,##0.00$' 
 
+        temp_st_ge = sheet.cell(row=17+(x+1), column=11)
+        temp_st_ge.value = list[x].saint_gerard_amount
+        temp_st_ge.border = border_default
+        temp_st_ge.number_format = '#,##0.00$' 
+
+        temp_st_th = sheet.cell(row=17+(x+1), column=12)
+        temp_st_th.value = list[x].sainte_therese_amount
+        temp_st_th.border = border_default
+        temp_st_th.number_format = '#,##0.00$' 
+
     #total rev autres
     total_autre = sheet.cell(row=55, column=6)
     total_autre.value = "TOTAL DÉPENSE DE BUREAU"
     total_autre.font = Font(bold=True,size=12)
+    total_autre.border = border_default
+
+    total_par1 = sheet.cell(row=55, column=7)
+    total_par1.border = border_default
 
     total_autre_st_do = sheet.cell(row=55, column=9)
     total_autre_st_do.value = total_bilan.bureau_total.st_dominique
@@ -193,6 +286,18 @@ def write_bureau(list,sheet, total_bilan):
     total_autre_st_fa.number_format = '#,##0.00$' 
     total_autre_st_fa.font = Font(bold=True)
     total_autre_st_fa.border = border_default
+
+    total_par_st_ge = sheet.cell(row=55, column=11)
+    total_par_st_ge.value = total_bilan.bureau_total.st_gerard
+    total_par_st_ge.number_format = '#,##0.00$' 
+    total_par_st_ge.font = Font(bold=True)
+    total_par_st_ge.border = border_default
+
+    total_par_st_th = sheet.cell(row=55, column=12)
+    total_par_st_th.value = total_bilan.bureau_total.st_therese
+    total_par_st_th.number_format = '#,##0.00$' 
+    total_par_st_th.font = Font(bold=True)
+    total_par_st_th.border = border_default
 
 def WriteRevenus(list, sheet, total_final):
 
@@ -245,10 +350,27 @@ def write_batisse(list, sheet, total_bilan):
         temp_st_fam.border = border_default
         temp_st_fam.number_format = '#,##0.00$' 
 
+        temp_st_ge = sheet.cell(row=20+(x+1), column=11)
+        temp_st_ge.value = list[x].saint_gerard_amount
+        temp_st_ge.border = border_default
+        temp_st_ge.number_format = '#,##0.00$' 
+
+        temp_st_th = sheet.cell(row=20+(x+1), column=12)
+        temp_st_th.value = list[x].sainte_therese_amount
+        temp_st_th.border = border_default
+        temp_st_th.number_format = '#,##0.00$' 
+
+        
+
     #total rev autres
     total_autre = sheet.cell(row=66, column=6)
     total_autre.value = "TOTAL DÉPENSE DE BÂTISSE"
     total_autre.font = Font(bold=True,size=12)
+    total_autre.border = border_default
+
+    total_par1 = sheet.cell(row=66, column=7)
+    total_par1.border = border_default
+    
 
     total_batisse_st_do = sheet.cell(row=66, column=9)
     total_batisse_st_do.value = total_bilan.batisse_total.st_dominique
@@ -262,6 +384,18 @@ def write_batisse(list, sheet, total_bilan):
     total_batisse_st_fa.number_format = '#,##0.00$' 
     total_batisse_st_fa.font = Font(bold=True)
     total_batisse_st_fa.border = border_default
+
+    total_par_st_ge = sheet.cell(row=66, column=11)
+    total_par_st_ge.value = total_bilan.batisse_total.st_gerard
+    total_par_st_ge.number_format = '#,##0.00$' 
+    total_par_st_ge.font = Font(bold=True)
+    total_par_st_ge.border = border_default
+
+    total_par_st_th = sheet.cell(row=66, column=12)
+    total_par_st_th.value = total_bilan.batisse_total.st_therese
+    total_par_st_th.number_format = '#,##0.00$' 
+    total_par_st_th.font = Font(bold=True)
+    total_par_st_th.border = border_default
 
 def write_header(sheet):
     
@@ -289,6 +423,14 @@ def write_header(sheet):
     j4 = sheet.cell(row=4, column=10)
     j4.value = "SAINTE-FAMILLE"
     j4.font = Font(bold=True)
+
+    k4 = sheet.cell(row=4, column=11)
+    k4.value = "SAINT-GÉRARD"
+    k4.font = Font(bold=True)
+
+    k4 = sheet.cell(row=4, column=12)
+    k4.value = "SAINTE-THÉRÈSE"
+    k4.font = Font(bold=True)
 
 
 
@@ -318,6 +460,12 @@ def WriteDepense(list, sheet, list_bilan):
 
     total_autre_st_fa = sheet.cell(row=68, column=10)
     total_autre_st_fa.value = list_bilan.depenses_total.st_famille
+
+    total_autre_st_ge = sheet.cell(row=68, column=11)
+    total_autre_st_ge.value = list_bilan.depenses_total.st_gerard
+
+    total_autre_st_th = sheet.cell(row=68, column=12)
+    total_autre_st_th.value = list_bilan.depenses_total.st_therese
 
 def write_footer(sheet,list_bilan):
     k73 = sheet.cell(row=73, column=6)
@@ -352,6 +500,12 @@ def write_footer(sheet,list_bilan):
     q73 = sheet.cell(row=77, column=10)
     q73.value = list_bilan.surplus_annee.st_famille
 
+    t73c = sheet.cell(row=79, column=11)
+    t73c.value = list_bilan.surplus_annee.st_gerard
+
+    t73b2 = sheet.cell(row=79, column=12)
+    t73b2.value = list_bilan.surplus_annee.st_therese
+
     #surplus annee
     r73 = sheet.cell(row=79, column=6)
     r73.value = "SURPLUS (DÉFICIT) ACCUMULÉ AU 31/12/202#"
@@ -362,6 +516,12 @@ def write_footer(sheet,list_bilan):
 
     t73 = sheet.cell(row=79, column=10)
     t73.value = list_bilan.surplus_accumule.st_famille
+
+    t73b = sheet.cell(row=79, column=11)
+    t73b.value = list_bilan.surplus_accumule.st_gerard
+
+    t73b1 = sheet.cell(row=79, column=12)
+    t73b1.value = list_bilan.surplus_accumule.st_therese
 
     #eglises de parroisses
     u73 = sheet.cell(row=79, column=6)
@@ -467,5 +627,9 @@ def regroupement(list_operations):
                     bilan.st_dominique_amount = bilan.st_dominique_amount+operation.amount
                 elif(operation.eglise == "SAINTE-FAMILLE"):
                     bilan.sainte_famille_amount = bilan.sainte_famille_amount+operation.amount
+                elif(operation.eglise == "SAINT-GERARD"):
+                    bilan.saint_gerard_amount = bilan.saint_gerard_amount+operation.amount
+                elif(operation.eglise == "SAINTE-THERESE"):
+                    bilan.sainte_therese_amount = bilan.sainte_therese_amount+operation.amount
 
     return grouped_list

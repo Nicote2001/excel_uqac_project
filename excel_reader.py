@@ -59,9 +59,11 @@ def ReadAllExcel():
             Returns:
                     final_list (List[operation])
     '''
-    arvida_lst  = ExcelfileToList("SAINT-DOMINIQUE")
-    kenogami_lst  = ExcelfileToList("SAINTE-FAMILLE")
-    final_lst = arvida_lst + kenogami_lst
+    st_do_lst  = ExcelfileToList("SAINT-DOMINIQUE")
+    st_fa_lst  = ExcelfileToList("SAINTE-FAMILLE")
+    st_ge_lst  = ExcelfileToList("SAINT-GERARD")
+    st_th_lst  = ExcelfileToList("SAINTE-THERESE")
+    final_lst = st_do_lst + st_fa_lst + st_ge_lst + st_th_lst
 
     for x in final_lst:
         print(x.name+" - montant : "+str(x.amount))
