@@ -323,6 +323,12 @@ def WriteRevenus(list, sheet, total_final):
     total_autre_st_fa = sheet.cell(row=28, column=10)
     total_autre_st_fa.value = total_final.revenus_total.st_famille
 
+    total_autre_st_ge = sheet.cell(row=28, column=11)
+    total_autre_st_ge.value = total_final.depenses_total.st_gerard
+
+    total_autre_st_th = sheet.cell(row=28, column=12)
+    total_autre_st_th.value = total_final.depenses_total.st_therese
+
 def write_batisse(list, sheet, total_bilan):
     #de batisse
     total_par = sheet.cell(row=58, column=6)
@@ -474,9 +480,27 @@ def write_footer(sheet,list_bilan):
 
     l73 = sheet.cell(row=73, column=9)
     l73.value = list_bilan.revenus_total.st_dominique
+    l73.number_format = '#,##0.00$' 
+    l73.font = Font(bold=True)
+    l73.border = border_default
 
     i73 = sheet.cell(row=73, column=10)
     i73.value = list_bilan.revenus_total.st_famille
+    i73.number_format = '#,##0.00$' 
+    i73.font = Font(bold=True)
+    i73.border = border_default
+    
+    i73b = sheet.cell(row=73, column=11)
+    i73b.value = list_bilan.revenus_total.st_gerard
+    i73b.number_format = '#,##0.00$' 
+    i73b.font = Font(bold=True)
+    i73b.border = border_default
+
+    i73e = sheet.cell(row=73, column=12)
+    i73e.value = list_bilan.revenus_total.st_therese
+    i73e.number_format = '#,##0.00$' 
+    i73e.font = Font(bold=True)
+    i73e.border = border_default
 
     #depense
     j73 = sheet.cell(row=75, column=6)
@@ -485,9 +509,28 @@ def write_footer(sheet,list_bilan):
 
     m73 = sheet.cell(row=75, column=9)
     m73.value = list_bilan.depenses_total.st_dominique
+    m73.number_format = '#,##0.00$' 
+    m73.font = Font(bold=True)
+    m73.border = border_default
 
     n73 = sheet.cell(row=75, column=10)
     n73.value = list_bilan.depenses_total.st_famille
+    n73.number_format = '#,##0.00$' 
+    n73.font = Font(bold=True)
+    n73.border = border_default
+
+    i73d = sheet.cell(row=75, column=11)
+    i73d.value = list_bilan.depenses_total.st_gerard
+    i73d.number_format = '#,##0.00$' 
+    i73d.font = Font(bold=True)
+    i73d.border = border_default
+
+
+    i73c = sheet.cell(row=75, column=12)
+    i73c.value = list_bilan.depenses_total.st_therese
+    i73c.number_format = '#,##0.00$' 
+    i73c.font = Font(bold=True)
+    i73c.border = border_default
 
     #surplus annee
     o73 = sheet.cell(row=77, column=6)
@@ -496,15 +539,28 @@ def write_footer(sheet,list_bilan):
 
     p73 = sheet.cell(row=77, column=9)
     p73.value = list_bilan.surplus_annee.st_dominique
+    p73.number_format = '#,##0.00$' 
+    p73.font = Font(bold=True)
+    p73.border = border_default
 
     q73 = sheet.cell(row=77, column=10)
     q73.value = list_bilan.surplus_annee.st_famille
+    q73.number_format = '#,##0.00$' 
+    q73.font = Font(bold=True)
+    q73.border = border_default
 
-    t73c = sheet.cell(row=79, column=11)
+    t73c = sheet.cell(row=77, column=11)
     t73c.value = list_bilan.surplus_annee.st_gerard
+    t73c.number_format = '#,##0.00$' 
+    t73c.font = Font(bold=True)
+    t73c.border = border_default
 
-    t73b2 = sheet.cell(row=79, column=12)
+    t73b2 = sheet.cell(row=77, column=12)
     t73b2.value = list_bilan.surplus_annee.st_therese
+    t73b2.number_format = '#,##0.00$' 
+    t73b2.font = Font(bold=True)
+    t73b2.border = border_default
+
 
     #surplus annee
     r73 = sheet.cell(row=79, column=6)
@@ -539,6 +595,15 @@ def write_footer(sheet,list_bilan):
 
     x73 = sheet.cell(row=81, column=10)
     x73.value = "SAINT-RAPHAEL"
+    
+    z73 = sheet.cell(row=79, column=11)
+    z73.value = "SAINT-GÉRARD"
+
+    a74 = sheet.cell(row=79, column=12)
+    a74.value = "SAINTE-THÉRÈSE"
+
+    b74 = sheet.cell(row=80, column=12)
+    b74.value = "SAINT-MATHIAS"
 
 
 def WriteExcel(bilan_lst):
