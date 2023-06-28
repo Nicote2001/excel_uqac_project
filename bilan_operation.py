@@ -1,6 +1,6 @@
 import total
 
-#class def
+#class def chaque montant pour chaque compte
 class bilan_operations:
     def __init__(self,account,name, st_dominique_amount, sainte_famille_amount):
         self.account = account

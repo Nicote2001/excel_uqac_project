@@ -1,4 +1,4 @@
-#class def
+#class def les operations récoltés dans les excels
 class Operations:
     def __init__(self,account, name, type,amount,eglise):
         self.account = account

@@ -638,63 +638,66 @@ def WriteExcel(bilan_lst):
 
 #regroupement
 def regroupement(list_operations):
-    grouped_list = [bilan_operations(40100,"QUÊTES",0,0),
-                    bilan_operations(40200,"CAPITATION",0,0),
-                    bilan_operations(40300,"LUMINAIRE (CULTE)",0,0),
-                    bilan_operations(40400,"CÉLÉBRATIONS",0,0),
-                    bilan_operations(40500,"QUÊTES COMMANDÉES",0,0),
-                    bilan_operations(40600,"DONS",0,0),
-                    bilan_operations(40700,"PASTORALE",0,0),
-                    bilan_operations(40800,"OBJETS DE REVENTE(FEUILLET)",0,0),
-                    bilan_operations(40900,"EXTRAIT DES ACTES",0,0),
-                    bilan_operations(41000,"ACTICITÉ DE FINANCEMENT",0,0),
-                    bilan_operations(49000,"AUTRES PROVENANT DES",0,0),
-                    bilan_operations(50100,"LOCATIONS",0,0),
-                    bilan_operations(50200,"INTÉRETS",0,0),
-                    bilan_operations(50300,"SUBVENTION",0,0),
-                    bilan_operations(50400,"ristournes assurance",0,0),
-                    bilan_operations(59000,"revenus autres",0,0),
-                    bilan_operations(60100,"SALAIRE ET C.E.SACRISTAIN",0,0),
-                    bilan_operations(60200,"MINISTÈRE",0,0),
-                    bilan_operations(60300,"FRAIS DE VOYAGE",0,0),
-                    bilan_operations(60400,"CÉLÉBRATIONS",0,0),
-                    bilan_operations(60500,"FEUILLET PAROISSIAL",0,0),
-                    bilan_operations(60600,"cultes",0,0),
-                    bilan_operations(60700,"UNITÉ DES DEUX-RIVES",0,0),
-                    bilan_operations(60800,"ANIMATION LITURGIQUE",0,0),
-                    bilan_operations(60900,"ANIMATION PASTORALE",0,0),
-                    bilan_operations(61000,"PART ÉGLISE",0,0),
-                    bilan_operations(61100,"OBJETS DE REVENTE",0,0),
-                    bilan_operations(61200,"CIMETIÈRE",0,0),
-                    bilan_operations(61300,"Quêtes commandéée",0,0),
-                    bilan_operations(61400,"TRIBUT DIOCÉSAIN",0,0),
-                    bilan_operations(70100,"SALAIRES C.E.",0,0),
-                    bilan_operations(70200,"DÉPENSES DE BUREAU",0,0),
-                    bilan_operations(70300,"HONORAIRES ET CONTRATS",0,0),
-                    bilan_operations(70400,"FORMATION",0,0),
-                    bilan_operations(70500,"ADMINISTRATION/TPS et TVQ",0,0),
-                    bilan_operations(70600,"CIVILITÉES",0,0),
-                    bilan_operations(79000,"AUTRE DÉPENSES DE BUREAU",0,0),
-                    bilan_operations(80100,"SALAIRE ET C.E. EMPLOYEUR",0,0),
-                    bilan_operations(80200,"CHAUFFAGE",0,0),
-                    bilan_operations(80300,"ÉLECTRICITÉ",0,0),
-                    bilan_operations(80400,"ENTRETIEN INTÉRIEUR",0,0),
-                    bilan_operations(80500,"ENTRETIEN EXTÉRIEUR",0,0),
-                    bilan_operations(80600,"RÉPARATIONS MAJEURES",0,0),
-                    bilan_operations(80700,"ASSURANCE",0,0),
-                    bilan_operations(89000,"AUTRE DÉPENSES SUR BÂTISSES",0,0)
-                    ]
-    
-    for operation in list_operations:
-        for bilan in grouped_list:
-            if(int(str(operation.account)[:3]) == int(str(bilan.account)[:3])):
-                if(operation.eglise == "SAINT-DOMINIQUE"):
-                    bilan.st_dominique_amount = bilan.st_dominique_amount+operation.amount
-                elif(operation.eglise == "SAINTE-FAMILLE"):
-                    bilan.sainte_famille_amount = bilan.sainte_famille_amount+operation.amount
-                elif(operation.eglise == "SAINT-GERARD"):
-                    bilan.saint_gerard_amount = bilan.saint_gerard_amount+operation.amount
-                elif(operation.eglise == "SAINTE-THERESE"):
-                    bilan.sainte_therese_amount = bilan.sainte_therese_amount+operation.amount
+    try:
+        grouped_list = [bilan_operations(40100,"QUÊTES",0,0),
+                        bilan_operations(40200,"CAPITATION",0,0),
+                        bilan_operations(40300,"LUMINAIRE (CULTE)",0,0),
+                        bilan_operations(40400,"CÉLÉBRATIONS",0,0),
+                        bilan_operations(40500,"QUÊTES COMMANDÉES",0,0),
+                        bilan_operations(40600,"DONS",0,0),
+                        bilan_operations(40700,"PASTORALE",0,0),
+                        bilan_operations(40800,"OBJETS DE REVENTE(FEUILLET)",0,0),
+                        bilan_operations(40900,"EXTRAIT DES ACTES",0,0),
+                        bilan_operations(41000,"ACTICITÉ DE FINANCEMENT",0,0),
+                        bilan_operations(49000,"AUTRES PROVENANT DES",0,0),
+                        bilan_operations(50100,"LOCATIONS",0,0),
+                        bilan_operations(50200,"INTÉRETS",0,0),
+                        bilan_operations(50300,"SUBVENTION",0,0),
+                        bilan_operations(50400,"ristournes assurance",0,0),
+                        bilan_operations(59000,"revenus autres",0,0),
+                        bilan_operations(60100,"SALAIRE ET C.E.SACRISTAIN",0,0),
+                        bilan_operations(60200,"MINISTÈRE",0,0),
+                        bilan_operations(60300,"FRAIS DE VOYAGE",0,0),
+                        bilan_operations(60400,"CÉLÉBRATIONS",0,0),
+                        bilan_operations(60500,"FEUILLET PAROISSIAL",0,0),
+                        bilan_operations(60600,"cultes",0,0),
+                        bilan_operations(60700,"UNITÉ DES DEUX-RIVES",0,0),
+                        bilan_operations(60800,"ANIMATION LITURGIQUE",0,0),
+                        bilan_operations(60900,"ANIMATION PASTORALE",0,0),
+                        bilan_operations(61000,"PART ÉGLISE",0,0),
+                        bilan_operations(61100,"OBJETS DE REVENTE",0,0),
+                        bilan_operations(61200,"CIMETIÈRE",0,0),
+                        bilan_operations(61300,"Quêtes commandéée",0,0),
+                        bilan_operations(61400,"TRIBUT DIOCÉSAIN",0,0),
+                        bilan_operations(70100,"SALAIRES C.E.",0,0),
+                        bilan_operations(70200,"DÉPENSES DE BUREAU",0,0),
+                        bilan_operations(70300,"HONORAIRES ET CONTRATS",0,0),
+                        bilan_operations(70400,"FORMATION",0,0),
+                        bilan_operations(70500,"ADMINISTRATION/TPS et TVQ",0,0),
+                        bilan_operations(70600,"CIVILITÉES",0,0),
+                        bilan_operations(79000,"AUTRE DÉPENSES DE BUREAU",0,0),
+                        bilan_operations(80100,"SALAIRE ET C.E. EMPLOYEUR",0,0),
+                        bilan_operations(80200,"CHAUFFAGE",0,0),
+                        bilan_operations(80300,"ÉLECTRICITÉ",0,0),
+                        bilan_operations(80400,"ENTRETIEN INTÉRIEUR",0,0),
+                        bilan_operations(80500,"ENTRETIEN EXTÉRIEUR",0,0),
+                        bilan_operations(80600,"RÉPARATIONS MAJEURES",0,0),
+                        bilan_operations(80700,"ASSURANCE",0,0),
+                        bilan_operations(89000,"AUTRE DÉPENSES SUR BÂTISSES",0,0)
+                        ]
+        
+        for operation in list_operations:
+            for bilan in grouped_list:
+                if(int(str(operation.account)[:3]) == int(str(bilan.account)[:3])):
+                    if(operation.eglise == "SAINT-DOMINIQUE"):
+                        bilan.st_dominique_amount = bilan.st_dominique_amount+operation.amount
+                    elif(operation.eglise == "SAINTE-FAMILLE"):
+                        bilan.sainte_famille_amount = bilan.sainte_famille_amount+operation.amount
+                    elif(operation.eglise == "SAINT-GERARD"):
+                        bilan.saint_gerard_amount = bilan.saint_gerard_amount+operation.amount
+                    elif(operation.eglise == "SAINTE-THERESE"):
+                        bilan.sainte_therese_amount = bilan.sainte_therese_amount+operation.amount
 
-    return grouped_list
+        return grouped_list
+    except:
+        print("une erreur lors de la compilation des résultat groupée s'est produite")

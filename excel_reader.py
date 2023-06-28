@@ -59,12 +59,15 @@ def ReadAllExcel():
             Returns:
                     final_list (List[operation])
     '''
-    st_do_lst  = ExcelfileToList("SAINT-DOMINIQUE")
-    st_fa_lst  = ExcelfileToList("SAINTE-FAMILLE")
-    st_ge_lst  = ExcelfileToList("SAINT-GERARD")
-    st_th_lst  = ExcelfileToList("SAINTE-THERESE")
-    final_lst = st_do_lst + st_fa_lst + st_ge_lst + st_th_lst
+    try:
+        st_do_lst  = ExcelfileToList("SAINT-DOMINIQUE")
+        st_fa_lst  = ExcelfileToList("SAINTE-FAMILLE")
+        st_ge_lst  = ExcelfileToList("SAINT-GERARD")
+        st_th_lst  = ExcelfileToList("SAINTE-THERESE")
+        final_lst = st_do_lst + st_fa_lst + st_ge_lst + st_th_lst
 
-    for x in final_lst:
-        print(x.name+" - montant : "+str(x.amount))
-    return final_lst
+        for x in final_lst:
+            print(x.name+" - montant : "+str(x.amount))
+        return final_lst
+    except:
+        print("il y a eu une erreur lors de la lecture d'un des fichiers")

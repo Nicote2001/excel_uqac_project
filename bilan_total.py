@@ -1,6 +1,6 @@
 from total import total
 
-#class def
+#class def sert a calculer les grands totaux
 class bilan_totals:
     def __init__(self, list_bilan):
         self.list_bilan = list_bilan
