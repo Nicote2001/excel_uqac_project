@@ -3,7 +3,7 @@ from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Fo
 from operation import Operations
 from bilan_operation import bilan_operations
 
-def ExcelfileToList(name_file):
+def ExcelfileToList(path,nom_eglise):
     '''
     Returns list from a excel ( formated ).
 
@@ -13,44 +13,36 @@ def ExcelfileToList(name_file):
             Returns:
                     binary_sum (str): Binary string of the sum of a and b
     '''
-    file = name_file + ".xlsx"
+    file = path
     dataframe = openpyxl.load_workbook(file)
     
     # Define variables
     dataframe1 = dataframe.active
     list = []
-    cpt=0
     temp_amount=0
     temp_name=""
     temp_no_account =0
     temp_type=0 # 0 = revenue, 1= depense
-    string_list = ['Revenus :'] # filtre indésirables
-    string_to_switch="Frais d'exploitation :" #mot pour switch entre revenues et dépsenses
-    string_to_stop ="Total des frais"
-    is_over = 0 #bool
     
     # Iteration dans les row
-    for row in range(4, dataframe1.max_row):
-        for col in dataframe1.iter_cols(1, 3): # prendre que les 2 premieres col des row
-            if(col[row].value != string_to_stop and is_over == 0): 
-                if(col[row].value not in string_list and col[row].value != None): #verifier si on a pas de data indésirable (filtre)
-                    if(cpt==0):
-                        temp_no_account = col[row].value
-                        cpt = cpt+1
-                    elif(cpt==1):
-                            if(col[row].value == string_to_switch):    #switch entre les revenues et les dépenses
-                                temp_type = 1
-                            temp_name = col[row].value
-                            cpt = cpt+1
-                    else:
-                        temp_amount = col[row].value
-                        cpt =0
-                        list.append(Operations(temp_no_account,temp_name,temp_type,temp_amount,name_file)) #ajout a la liste
-            else:
-                is_over=1
+    for row1 in range(2, dataframe1.max_row):
+            if dataframe1.cell(row=row1,column = 9).value  != None and isinstance(dataframe1.cell(row=row1,column = 9).value, (int, float)):
+                temp_no_account = dataframe1.cell(row = row1,column = 1).value
+                temp_name = dataframe1.cell(row = row1,column = 2).value
+                temp_amount = dataframe1.cell(row = row1,column = 9).value
+                temp_type = 0
+                list.append(Operations(temp_no_account,temp_name,temp_type,temp_amount,nom_eglise)) #ajout a la liste
+            elif dataframe1.cell(row=row1,column = 10).value  != None and isinstance(dataframe1.cell(row=row1,column = 10).value, (int, float)):
+                temp_no_account = dataframe1.cell(row = row1,column = 1).value
+                temp_name = dataframe1.cell(row = row1,column = 2).value
+                temp_amount = dataframe1.cell(row = row1,column = 10).value
+                temp_type = 1
+                list.append(Operations(temp_no_account,temp_name,temp_type,temp_amount,nom_eglise)) #ajout a la liste
+                        
+            
     return list
 
-def ReadAllExcel():
+def ReadAllExcel(list):
     '''
     Read all excels, made and group list and return final list
 
@@ -60,10 +52,10 @@ def ReadAllExcel():
                     final_list (List[operation])
     '''
     try:
-        st_do_lst  = ExcelfileToList("SAINT-DOMINIQUE")
-        st_fa_lst  = ExcelfileToList("SAINTE-FAMILLE")
-        st_ge_lst  = ExcelfileToList("SAINT-GERARD")
-        st_th_lst  = ExcelfileToList("SAINTE-THERESE")
+        st_do_lst  = ExcelfileToList(list[0], "SAINT-DOMINIQUE")
+        st_fa_lst  = ExcelfileToList(list[1],'SAINTE-FAMILLE')
+        st_ge_lst  = ExcelfileToList(list[2], "SAINT-GERARD")
+        st_th_lst  = ExcelfileToList(list[3], "SAINTE-THERESE")
         final_lst = st_do_lst + st_fa_lst + st_ge_lst + st_th_lst
 
         for x in final_lst:
